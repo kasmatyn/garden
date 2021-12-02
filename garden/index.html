@@ -1,0 +1,134 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>title</title>
+</head>
+<body>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        filter: blur(1px);
+        transition: filter 2s;
+    }
+    img{
+        width: 100%;
+    }
+    #scene{
+        height: 100vh;
+        position: relative;
+    }
+    #scene .sky{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+    #scene .back{
+        position: absolute;
+        bottom: 0;
+        z-index: 2;
+    }
+    #scene .mountains{
+        position: absolute;
+        top: 10% !important;
+        z-index: 1;
+    }
+    #scene .red{
+        position: absolute;
+        top: 55px !important;
+        left: 35px !important;
+        z-index: 3;
+    }
+    #scene .poolWater{
+        z-index: 2;
+        left: 10px !important;
+        top: 100px !important;
+    }
+    #scene .pool{
+        position: absolute;
+        top: unset !important;
+        bottom: -13%;
+        z-index: 3;
+        max-width: 855px;
+    }
+    .grass {
+        position: absolute;
+        top: 50% !important;
+        left: 33% !important;
+        z-index: 2;
+        max-width: 200px;
+        animation: lighthouse 4s 0.1s infinite alternate;
+        cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    }
+    .main-inner {
+        position: relative;
+    }
+    #scene .trees{
+        position: absolute;
+        z-index: 1;
+        max-width: 50%;
+    }
+    .MainBack{
+        position: absolute;
+        
+    }
+    @keyframes lighthouse {
+        0% {
+            transform: translate3d(1%, 0, 0) rotateZ(1deg);
+        }
+        to {
+            transform: translate3d(-1%, 0, 0) rotateZ(-1deg);
+        }
+    }
+</style>
+
+    <div id="main-wrapper">
+        <div id="scene" data-depth="-0.6">
+            <img data-depth="-0.1" class="back" src="grass.png">
+            <img data-depth="-0.16" class="back" src="bck2.png">
+            <img data-depth="-0.1" class="sky" src="Sky.png">
+            <img data-depth="0.1" class="mountains" src="Mountains.png">
+            <img data-depth="-0.12" class="pool" src="Plant1.png">
+            <img data-depth="-0.3" class="red" src="front2.png">
+            <img data-depth="0.15" class="trees" src="trees.png">
+            <img data-depth="-0.15" class="poolWater" src="water.png">
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+<script>
+    var wrapper = document.getElementById('main-wrapper');
+    var parallaxInstance = new Parallax(wrapper);
+    var scene = document.getElementById('scene');
+    var parallaxInstance = new Parallax(scene);
+
+    $(document).ready(function(){
+        setTimeout(blur,2000);
+        function blur() {
+            $('body').css('transform', 'scale(1.3)');
+        }
+    })
+
+
+    var timeout = null;
+    $(document).on('mousemove', function() {
+        clearTimeout(timeout);
+        $('body').css('filter','unset');
+        timeout = setTimeout(function() {
+            $('body').css('filter','blur(1px)');
+        }, 1000);
+    });
+</script>
+
+</body>
+</html>
